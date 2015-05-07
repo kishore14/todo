@@ -9,11 +9,11 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    
+    binding.pry
     if @user.save
       session[:user_id] = @user.id
       flash[:notice]= 'You are registered.'
-      redirect_to task_path
+      redirect_to tasks_path
     else
       render :new
     end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:name, :password, :time_zone)
+    params.require(:user).permit(:name, :password, :email, :time_zone)
   end
   
   def set_user 
