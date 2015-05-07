@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   
   def create
     @task = Task.new()
+    binding.pry
     task_params
     
     if @task.save
@@ -47,12 +48,16 @@ class TasksController < ApplicationController
     @task.actions = params[:task][:actions]
     @task.current_update = '' 
     if params[:task][:current_update] !=''
-      @task.history = "\r\n #{Time.now.strftime("%d/%m/%Y %H:%M")}\r\n==============================\r\n" + params[:task][:current_update] + "\r\n" +@task.history 
+      @task.history = "\r\n #{Time.now.strftime("%d/%m/%Y %H:%M")}\r\n==============================\r\n" + params[:task][:current_update] + "\r\n" + @task.history.to_s
     else
-    @task.history = 'None'
+      @task.history = ''
     end
     @task.user_id = current_user
-    @task.status_id = params[:task][:status_id]
+    if params[:task][:status_id].nil?
+      @task.status_id = Status.first.id
+    else
+      @task.status_id = params[:task][:status_id]
+    end
     
   end
 end
