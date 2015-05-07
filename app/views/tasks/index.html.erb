@@ -1,0 +1,16 @@
+<%= render 'shared/content_title', title: 'All tasks' %>
+
+<div class="row"> 
+<%@tasks.each do |task| %>
+  <div class='span8 well'>
+     <p class='pull-right'>
+      [<%= link_to 'edit this task', edit_task_path(task) %>]
+    </p>      
+    <p><span class="badge"><%= link_to task.status.status, status_path(task.status) %></span></p>
+    <p><strong>Title: </strong> <%= display_field(task.title).to_s.html_safe%></p>
+    <h5>Actions: </h5> <p> <%= display_field(task.actions).to_s.html_safe %></p>
+    <h5> History:</h5>
+    <p><%= display_field(task.history).to_s.html_safe %></p>
+  </div>
+<% end %>
+</div>

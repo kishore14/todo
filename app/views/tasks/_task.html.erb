@@ -1,0 +1,11 @@
+<div class='span8 well'>
+  <p class='pull-right'>
+      [<%= link_to 'edit this task', edit_task_path(task) %>]
+  </p>
+  <h5>Title:</h5>
+  <p><%= display_field(task.title).to_s.html_safe%></p>
+  <h5>Actions: </h5>
+  <p> <%= display_field(task.actions).to_s.html_safe %></p>
+  <h5> History:</h5>
+  <p><%= display_field(task.history).to_s.html_safe %></p>
+</div>

@@ -1,0 +1,27 @@
+<%= render 'shared/content_title', title: 'Edit task' %>
+
+<div class="well">
+  <%= form_for @task do |f| %>
+    <%= render 'shared/errors', obj: @task %>
+    <div class="control-group">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="control_group">
+      <%= f.label :actions %>
+      <%= f.text_area :actions, cols: '24', rows: '5' %>
+    </div>
+    <div>
+      <%= f.label :current_update %>
+      <%= f.text_area :current_update, cols: '104', rows: '5' %>
+    </div>
+    <div class='control-group'>
+      <%= f.label "Status" %>
+      <%= f.collection_radio_buttons  :status_id, Status.all, :id, :status do |s|%>
+        <% s.label(class: "radio  inline") {s.radio_button(class: "radio ") + s.text} %>
+      <% end %>
+     </div>
+      <br/>
+    <%= f.submit(@task.new_record? ? 'Create Post' : 'Update Post', class: "btn btn-primary" )%>
+  <% end %>
+</div>

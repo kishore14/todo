@@ -1,0 +1,10 @@
+<div class='well'>
+  <%= form_for @status do |f| %>
+    <%= render 'shared/errors', obj: @status %>
+    <div class='control-group'>
+      <%= f.label :status %>
+      <%= f.text_field :status %>
+    </div>
+    <%= f.submit "Create New Status", class:'btn btn-success' %>
+  <% end %>
+</div>
