@@ -51,7 +51,7 @@ class TasksController < ApplicationController
     else
       @task.history = ''
     end
-    @task.user_id = current_user
+    @task.user_id = @current_user[:id]
     if params[:task][:status_id].nil?
       @task.status_id = Status.first.id
     else
