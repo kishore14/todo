@@ -7,13 +7,13 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :email, presence: true
   
-  before_save :generate_slug
+  before_save :generate_slug!
   
   def to_param
     self.slug
   end
   
-   def generate_slug
+   def generate_slug!
      self.slug = self.name.gsub(" ", "-").downcase
   end
   

@@ -5,14 +5,14 @@ class Task < ActiveRecord::Base
   validates :title, presence: true,  length: {minimum:  3}
   validates :actions, presence: true
   
-  before_save :generate_slug
+  before_save :generate_slug!
   
   def to_param
     self.slug
   end
   
-  def generate_slug
-    to_slug(self.title)
+  def generate_slug!
+    self.slug = to_slug(self.title)
   end
   
   def to_slug(name)
