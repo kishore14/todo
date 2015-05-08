@@ -17,7 +17,7 @@
     </div>
     <div class='control-group'>
       <%= f.label "Status" %>
-      <%= f.collection_radio_buttons  :status_id, Status.all, :id, :status do |s|%>
+      <%= f.collection_radio_buttons  :status_id, Status.where("user_id = ? ", @current_user ), :id, :status do |s|%>
         <% s.label(class: "radio  inline") {s.radio_button(class: "radio ") + s.text} %>
       <% end %>
      </div>

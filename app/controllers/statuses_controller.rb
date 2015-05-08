@@ -6,7 +6,8 @@ class StatusesController < ApplicationController
   end
   
   def create
-     @status = Status.new(status_params)
+    @status = Status.new()
+    status_params
     if @status.save
       flash[:notice] = "New Status Created."
       redirect_to root_path
@@ -16,11 +17,12 @@ class StatusesController < ApplicationController
   end
   
   def show
-    @status = Status.find_by slug: params[:id]
+    @status = Status.where("slug =? and user_id =?" , params[:id], @current_user.id).first
   end
   
   def status_params
-    params.require(:status).permit(:status)
+    @status.status = params[:status][:status] 
+    @status.user_id = @current_user[:id]
   end
   
 end

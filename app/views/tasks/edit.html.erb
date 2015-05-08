@@ -17,11 +17,11 @@
     </div>
     <div class='control-group'>
       <%= f.label "Status" %>
-      <%= f.collection_radio_buttons  :status_id, Status.all, :id, :status do |s|%>
+      <%= f.collection_radio_buttons  :status_id, Status.where("user_id = ? ", @current_user ), :id, :status do |s|%>
         <% s.label(class: "radio  inline") {s.radio_button(class: "radio ") + s.text} %>
       <% end %>
      </div>
       <br/>
-    <%= f.submit(@task.new_record? ? 'Create Post' : 'Update Post', class: "btn btn-primary" )%>
+    <%= f.submit(@task.new_record? ? 'Create Task' : 'Update Task', class: "btn btn-primary" )%>
   <% end %>
 </div>

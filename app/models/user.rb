@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
   has_many :tasks
+  has_many :statuses
   
   has_secure_password validations: false
   
   validates :name, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
-  validates :email, presence: true
   
   before_save :generate_slug!
   

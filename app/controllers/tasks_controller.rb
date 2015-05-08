@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   def update
     task_params
     if @task.save
-      flash[:notice] = "The post was updated."
+      flash[:notice] = "The task was updated."
       redirect_to task_path(@task)
     else
       render :edit
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     end
     @task.user_id = @current_user[:id]
     if params[:task][:status_id].nil?
-      @task.status_id = Status.first.id
+      @task.status_id = Status.where("user_id = ?", @current_user.id).first.id
     else
       @task.status_id = params[:task][:status_id]
     end

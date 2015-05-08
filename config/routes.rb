@@ -1,4 +1,4 @@
-PostitTemplate::Application.routes.draw do
+ToDoTemplate::Application.routes.draw do
   root to: 'sessions#new'
   
   get '/register', to: 'users#new'

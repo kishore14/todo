@@ -9,7 +9,7 @@
       Status <span class="caret"></span>
     <% end %>
     <ul class="dropdown-menu">
-      <% Status.all.each do |status| %>
+      <% Status.where("user_id = ? ", current_user.id ).each do |status| %>
         <li>
           <%= link_to status.status, status_path(status)%>
         </li>
