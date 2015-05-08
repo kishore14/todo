@@ -22,7 +22,8 @@ class StatusesController < ApplicationController
   
   def status_params
     @status.status = params[:status][:status] 
-    @status.user_id = @current_user[:id]
+    @status.user_id = @current_user.id
+    binding.pry
   end
   
 end
