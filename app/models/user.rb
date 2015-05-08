@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
   
    def generate_slug!
-     self.slug = self.name.gsub(" ", "-").downcase
+     self.slug = to_slug(self.name)
   end
   
   def to_slug(name)
